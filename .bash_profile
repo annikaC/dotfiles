@@ -27,6 +27,18 @@ then
   source ~/.bashrc
 fi
 
+# Include bash_prompt file (if present)
+if [ -f ~/.bash_prompt ]
+then
+  source ~/.bash_prompt
+fi
+
+# Include aliases file (if present)
+if [ -f ~/.aliases ]
+then
+  source ~/.aliases
+fi
+
 # Route local traffic over ethernet when using certain WiFi networks w/o proxy.
 function route_add() {
   sudo route add -net 10.0.0.0/8 -interface en0
