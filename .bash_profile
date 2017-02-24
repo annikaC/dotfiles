@@ -80,9 +80,15 @@ fi
 # Use brew-installed PHP binaries.
 export PATH="$brew_prefix/opt/php56/bin:$PATH"
 
-# Use nvm.
-export NVM_DIR="$HOME/.nvm"
-. "$brew_prefix/opt/nvm/nvm.sh"
+# Set proxies
+
+HTTPS_PROXY_PORT=`system_profiler SPNetworkDataType | grep "HTTPS Proxy Port" | awk '{print $4}' | head -n1`
+HTTPS_PROXY_SERVER=`system_profiler SPNetworkDataType | grep "HTTPS Proxy Server" | awk '{print $4}' | head -n1`
+HTTP_PROXY_PORT=`system_profiler SPNetworkDataType | grep "HTTP Proxy Port" | awk '{print $4}' | head -n1`
+HTTP_PROXY_SERVER=`system_profiler SPNetworkDataType | grep "HTTP Proxy Server" | awk '{print $4}' | head -n1`
+
+export https_proxy=https://$HTTPS_PROXY_SERVER:$HTTPS_PROXY_PORT
+export http_proxy=http://$HTTP_PROXY_SERVER:$HTTP_PROXY_PORT
 
 # Vagrant configuration.
 # export VAGRANT_DEFAULT_PROVIDER='virtualbox'
